@@ -1,0 +1,2037 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aditya Sharma - Data Science & AI Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Sans+Pro:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --color-primary: #2563eb;
+            --color-primary-foreground: #ffffff;
+            --color-background: #ffffff;
+            --color-foreground: #0f172a;
+            --color-muted: #f8fafc;
+            --color-muted-foreground: #64748b;
+            --color-accent: #3b82f6;
+            --color-accent-foreground: #ffffff;
+            --color-border: #e2e8f0;
+            --color-card: #ffffff;
+            --color-card-foreground: #0f172a;
+            
+            --font-serif: 'Playfair Display', serif;
+            --font-sans: 'Source Sans Pro', sans-serif;
+            
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            
+            /* Modern design variables */
+            --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-accent: linear-gradient(135deg, #d3fb93 0%, #f5576c 100%);
+            --gradient-hero: linear-gradient(135deg, #ffffff 0%, #ffffff 50%, #ffffff 100%);
+            --glass-bg: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --neon-glow: 0 0 20px rgba(102, 126, 234, 0.3);
+        }
+
+        body {
+            font-family: 'Source Sans Pro', sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            /*background: var(--bg-primary);*/
+            overflow-x: hidden;
+
+            background: var(--gradient-hero);
+            min-height: 100vh;
+            font-family: var(--font-sans);
+            line-height: 1.6;
+            color: var(--color-foreground);
+
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(8, 145, 178, 0.1);
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-primary);
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient-primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .social-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: rgba(8, 145, 178, 0.1);
+            border: 1px solid rgba(8, 145, 178, 0.2);
+            border-radius: 25px;
+            text-decoration: none;
+            color: var(--primary-color);
+            font-weight: 500;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .social-btn:hover {
+            background: var(--gradient-primary);
+            color: rgb(13, 156, 175);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(8, 145, 178, 0.3);
+        }
+
+        .mobile-menu {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .mobile-menu span {
+            width: 25px;
+            height: 3px;
+            background: var(--primary-color);
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, cyan, #13527c, #1f2834);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="75" cy="75" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="50" cy="10" r="0.5" fill="rgba(255,255,255,0.05)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+
+        .hero-content {
+            text-align: center;
+            max-width: 800px;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeInUp 1s ease;
+
+            font-family: var(--font-serif);
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #f5f6f6, #e7e8e9, #fdfefe);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
+            animation: shimmer 3s ease-in-out infinite;
+            
+            
+        }
+
+        .hero .subtitle {
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+
+        .hero .description {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+            line-height: 1.8;
+            animation: fadeInUp 1s ease 0.4s both;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            background: var(--gradient-primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            animation: fadeInUp 1s ease 0.6s both;
+            box-shadow: 0 10px 30px rgba(8, 145, 178, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(8, 145, 178, 0.4);
+        }
+
+
+        /* Floating Particles */
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 2;
+        }
+
+
+        .particle {
+            position: absolute;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            opacity: 0.1;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .particle:nth-child(1) { width: 20px; height: 20px; top: 20%; left: 10%; animation-delay: 0s; }
+        .particle:nth-child(2) { width: 15px; height: 15px; top: 60%; left: 80%; animation-delay: 2s; }
+        .particle:nth-child(3) { width: 25px; height: 25px; top: 80%; left: 20%; animation-delay: 4s; }
+        .particle:nth-child(4) { width: 18px; height: 18px; top: 30%; left: 70%; animation-delay: 1s; }
+        .particle:nth-child(5) { width: 22px; height: 22px; top: 70%; left: 60%; animation-delay: 3s; }
+
+        /* Section Styles */
+        .section {
+            padding: 5rem 0;
+            position: relative;
+        }
+
+        .section:nth-child(even) {
+            background: var(--bg-secondary);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 3rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-image {
+            position: relative;
+        }
+
+        .about-image img {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .about-text h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 1.5rem;
+            background: rgba(8, 145, 178, 0.05);
+            border-radius: 15px;
+            border: 1px solid rgba(8, 145, 178, 0.1);
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            display: block;
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-category {
+            background: rgba(cyan, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgb(0, 0, 0);
+            border-radius: 20px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .skill-category:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(8, 145, 178, 0.1);
+        }
+
+        .skill-category h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .skill-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+        }
+
+        .skill-tag {
+            padding: 0.5rem 1rem;
+            background: var(--gradient-primary);
+            color: white;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .skill-tag:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(8, 145, 178, 0.3);
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: rgba(cyan , 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgb(0, 0, 0);
+            border-radius: 20px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--color-primary);
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(8, 145, 178, 0.15);
+        }
+
+        .project-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .project-card p {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .tech-tag {
+            padding: 0.3rem 0.8rem;
+            background: rgba(8, 145, 178, 0.1);
+            color: var(--primary-color);
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .project-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .github-btn, .details-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 25px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .github-btn {
+            background: var(--gradient-primary);
+            color: white;
+        }
+
+        .details-btn {
+            background: rgba(8, 145, 178, 0.1);
+            color: var(--primary-color);
+            border: 1px solid rgba(8, 145, 178, 0.2);
+        }
+
+        .github-btn:hover, .details-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(8, 145, 178, 0.3);
+        }
+
+        /* Resume Section */
+        .resume-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(4px, 1fr));
+            gap: 3rem;
+            align-items:start;
+        }
+
+        .resume-section {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(8, 145, 178, 0.1);
+            border-radius: 20px;
+            padding: 2rem;
+        } 
+
+        .resume-section h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            color: var(--primary-color);
+            display: flex; 
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 2rem;
+            margin-bottom: 2rem;
+            border-left: 2px solid rgba(8, 145, 178, 0.2);
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -6px;
+            top: 0;
+            width: 10px;
+            height: 10px;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+        }
+
+        .timeline-item h4 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-item .institution {
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-item .date {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .timeline-item p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .download-resume {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            background: var(--gradient-primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            margin-top: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .download-resume-container {
+    text-align: center;
+    margin-top: 3rem;
+}
+
+        .download-resume:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(8, 145, 178, 0.3);
+        }
+
+        /* Contact Section */
+        .contact-content {
+            display: flex;    
+            justify-content: center; 
+            flex-direction: column; 
+            align-items: center;    
+            gap: 1rem;
+        }
+
+        .contact-info h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+        }
+
+        .contact-info p {
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .contact-details {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: rgba(8, 145, 178, 0.05);
+            border-radius: 15px;
+            border: 1px solid rgba(8, 145, 178, 0.1);
+        }
+
+        .contact-item svg {
+            width: 24px;
+            height: 24px;
+            fill: var(--primary-color);
+        }
+
+        .contact-form {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(8, 145, 178, 0.1);
+            border-radius: 20px;
+            padding: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 1px solid rgba(8, 145, 178, 0.2);
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.8);
+            font-family: inherit;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(8, 145, 178, 0.1);
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 1rem;
+            background: var(--gradient-primary);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(8, 145, 178, 0.3);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--text-primary);
+            color: white;
+            padding: 3rem 0 1rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            font-family: 'Playfair Display', serif;
+            margin-bottom: 1rem;
+            color: var(--accent-color);
+        }
+
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .footer-links a {
+            color: #9ca3af;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-color);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #374151;
+            padding-top: 1rem;
+            color: #9ca3af;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+        }
+
+        .modal-content {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            margin: 5% auto;
+            padding: 2rem;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 800px;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+            border: 1px solid rgba(8, 145, 178, 0.2);
+        }
+
+        .close {
+            position: absolute;
+            right: 1rem;
+            top: 1rem;
+            font-size: 2rem;
+            font-weight: bold;
+            cursor: pointer;
+            color: var(--text-secondary);
+            transition: color 0.3s ease;
+        }
+
+        .close:hover {
+            color: var(--primary-color);
+        }
+
+        .modal-section {
+            margin-bottom: 2rem;
+        }
+
+        .modal-section h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .modal-section p, .modal-section ul {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .modal-section ul {
+            padding-left: 1.5rem;
+        }
+
+        .modal-section li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 600px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu {
+                display: flex;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1.2rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .about-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-content {
+                grid-template-columns: 1fr;
+            }
+
+            .resume-content {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+        }
+
+        /* Scroll animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">Aditya Sharma</div>
+            <ul class="nav-links">
+                <li><a href="#projects">Projects</a></li>
+            </ul>
+            <div class="social-links">
+                <a href="https://github.com/aditya-sharma-hub" target="_blank" class="social-btn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                    </svg>
+                    GitHub
+                </a>
+                <a href="https://www.linkedin.com/in/aditya-sharma-2a9b94287/" target="_blank" class="social-btn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                    </svg>
+                    LinkedIn
+                </a>
+            </div>
+            <div class="mobile-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="particles">
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+        </div>
+        <div class="hero-content">
+            <h1>Aditya Sharma</h1>
+            <p class="subtitle">Data Science & AI Enthusiast</p>
+            <p class="description">
+                Passionate about transforming data into actionable insights and building intelligent solutions <br>
+                that drive business growth. Specializing in machine learning, data analysis, and AI-powered applications.
+            </p>
+            <a href="#contact" class="cta-button">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                </svg>
+                Get In Touch
+            </a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+        <div class="container">
+            <h2 class="section-title fade-in">About Me</h2>
+            <div class="about-content fade-in">
+                <div class="about-image">
+                    <img src="resume.jpg" fade-in alt="Aditya Sharma" class="fade-in" style="width: 100%; border-radius: 20px; box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);" >
+                </div>
+                <div class="about-text">
+                    <h3>Transforming Data into Insights</h3>
+                    <p>
+                        I'm a passionate Data Science and AI enthusiast with a strong foundation in Mathematics, 
+                        statistical analysis, and data visualization. My journey in data science began with a curiosity 
+                        about how data can tell stories and drive meaningful decisions.
+                    </p>
+                    <p>
+                        With expertise in Python, and various machine learning frameworks, I specialize in building 
+                        predictive models, conducting exploratory data analysis, and creating data-driven solutions 
+                        that solve real-world problems.
+                    </p>
+                    <p>
+                        When I'm not analyzing datasets or building models, you can find me exploring the latest 
+                        developments in AI research, or sharing knowledge with the data science community.
+                    </p>
+                    <div class="about-stats">
+                        <div class="stat-item">
+                            <span class="stat-number">5+</span>
+                            <span class="stat-label">Projects Completed using Python and ML</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number"> 100+ </span>
+                            <span class="stat-label"> Python Coding hours</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number"> 30+ </span>
+                            <span class="stat-label"> Machine Learning hours  </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technical Skills Section -->
+    <section id="skills" class="section">
+        <div class="container">
+            <h2 class="section-title fade-in">Technical Skills</h2>
+            <div class="skills-grid fade-in">
+                <div class="skill-category">
+                    <h3>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0L19.2 12l-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"/>
+                        </svg>
+                        Programming Languages
+                    </h3>
+                    <div class="skill-list">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">SQL</span>
+                        <span class="skill-tag">C</span>
+                        <span class="skill-tag">Java</span>
+                        <span class="skill-tag">C++</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                        </svg>
+                        Machine Learning
+                    </h3>
+                    <div class="skill-list">
+                        <span class="skill-tag">Scikit-learn</span>
+                        <span class="skill-tag">TensorFlow</span>
+                        <span class="skill-tag">PyTorch</span>
+                        <span class="skill-tag">Random Forest</span>
+                        <span class="skill-tag">Linear Regression</span>
+                        <span class="skill-tag">Neural Networks</span>
+                    </div>
+                </div>
+                
+                <div class="skill-category">
+                    <h3>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
+                        </svg>
+                        Data Analysis & Visualization
+                    </h3>
+                    <div class="skill-list">
+                        <span class="skill-tag">Pandas</span>
+                        <span class="skill-tag">NumPy</span>
+                        <span class="skill-tag">Matplotlib</span>
+                        <span class="skill-tag">Seaborn</span>
+                        <span class="skill-tag">Plotly</span>
+                        <span class="skill-tag">Tableau</span>
+                        <span class="skill-tag">Power BI</span>
+                        <span class="skill-tag">Excel</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm16-4H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-1 9H9V9h10v2zm-4 4H9v-2h6v2zm4-8H9V5h10v2z"/>
+                        </svg>
+                        Databases & Big Data
+                    </h3>
+                    <div class="skill-list">
+                        <span class="skill-tag">MySQL</span>
+                        <span class="skill-tag">PostgreSQL</span>
+
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                        </svg>
+                        Tools & Technologies
+                    </h3>
+                    <div class="skill-list">
+                        <span class="skill-tag">Jupyter Notebook</span>
+                        <span class="skill-tag">Git</span>
+                        <span class="skill-tag">Linux</span>
+                        <span class="skill-tag">VS Code</span>
+                        <span class="skill-tag">Anaconda</span>
+
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                        </svg>
+                        Statistical Analysis
+                    </h3>
+                    <div class="skill-list">
+                        <span class="skill-tag">Hypothesis Testing</span>
+                        <span class="skill-tag">A/B Testing</span>
+                        <span class="skill-tag">Regression Analysis</span>
+                        <span class="skill-tag">Time Series Analysis</span>
+                        <span class="skill-tag">ANOVA</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section">
+        <div class="container">
+            <h2 class="section-title fade-in">Featured Projects</h2>
+            <div class="projects-grid fade-in">
+                <!-- Project 1: Life Expectancy Analysis -->
+                <div class="project-card">
+                    <h3>Life Expectancy Analysis (WHO)</h3>
+                    <p>Comprehensive analysis of global life expectancy trends using WHO data with machine learning models to predict life expectancy based on various health and economic factors.</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Pandas</span>
+                        <span class="tech-tag">Scikit-learn</span>
+                        <span class="tech-tag">Matplotlib</span>
+                        <span class="tech-tag">Seaborn</span>
+                        <span class="tech-tag">Linear Regression</span>
+                        <span class="tech-tag">Random Forest</span>
+                    </div>
+                    <div class="project-buttons">
+                        <a href="https://github.com/aditya-sharma-hub/Life-Expectancy-Analysis" target="_blank" class="github-btn">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                            </svg>
+                            GitHub
+                        </a>
+                        <button class="details-btn" onclick="openModal('project1')">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
+                            </svg>
+                            Details
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Project 2: Coca Cola Analysis -->
+                <div class="project-card">
+                    <h3>Coca Cola Stock Analysis</h3>
+                    <p>Advanced stock price forecasting and trend analysis of Coca Cola using multiple machine learning algorithms and technical indicators for investment insights.</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Pandas</span>
+                        <span class="tech-tag">NumPy</span>
+                        <span class="tech-tag">Scikit-learn</span>
+                        <span class="tech-tag">Matplotlib</span>
+                        <span class="tech-tag">Time Series</span>
+                        <span class="tech-tag">LSTM</span>
+                    </div>
+                    <div class="project-buttons">
+                        <a href="https://github.com/aditya-sharma-hub/Coca-Cola-Analysis" target="_blank" class="github-btn">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                            </svg>
+                            GitHub
+                        </a>
+                        <button class="details-btn" onclick="openModal('project2')">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
+                            </svg>
+                            Details
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Project 3: Laptop Price Analysis -->
+                <div class="project-card">
+                    <h3>Laptop Price Analysis</h3>
+                    <p>Comprehensive analysis of laptop pricing trends and feature impact using regression models to predict laptop prices based on specifications and market factors.</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Pandas</span>
+                        <span class="tech-tag">Scikit-learn</span>
+                        <span class="tech-tag">Matplotlib</span>
+                        <span class="tech-tag">Seaborn</span>
+                        <span class="tech-tag">Regression</span>
+                        <span class="tech-tag">Feature Engineering</span>
+                    </div>
+                    <div class="project-buttons">
+                        <a href="https://github.com/aditya-sharma-hub/Laptop-Price-Analysis" target="_blank" class="github-btn">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                            </svg>
+                            GitHub
+                        </a>
+                        <button class="details-btn" onclick="openModal('project3')">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
+                            </svg>
+                            Details
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Project 4: Data Science Job Salaries -->
+                <div class="project-card">
+                    <h3>Data Science Job Salaries Analysis</h3>
+                    <p>In-depth analysis of data science job market trends, salary predictions, and career insights using comprehensive salary datasets and predictive modeling.</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Pandas</span>
+                        <span class="tech-tag">NumPy</span>
+                        <span class="tech-tag">Scikit-learn</span>
+                        <span class="tech-tag">Plotly</span>
+                        <span class="tech-tag">Statistical Analysis</span>
+                        <span class="tech-tag">Data Visualization</span>
+                    </div>
+                    <div class="project-buttons">
+                        <a href="https://github.com/aditya-sharma-hub/Data-Science-Job-Salaries-Analysis" target="_blank" class="github-btn">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                            </svg>
+                            GitHub
+                        </a>
+                        <button class="details-btn" onclick="openModal('project4')">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
+                            </svg>
+                            Details
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Project 5: Supermarket Sales Analysis -->
+                <div class="project-card">
+                    <h3>Supermarket Sales Data Analysis</h3>
+                    <p>Comprehensive retail analytics project analyzing supermarket sales patterns, customer behavior, and business insights using advanced data analysis techniques.</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Pandas</span>
+                        <span class="tech-tag">NumPy</span>
+                        <span class="tech-tag">Matplotlib</span>
+                        <span class="tech-tag">Seaborn</span>
+                        <span class="tech-tag">Business Intelligence</span>
+                        <span class="tech-tag">Retail Analytics</span>
+                    </div>
+                    <div class="project-buttons">
+                        <a href="https://github.com/aditya-sharma-hub/Supermarket-Sales-Data-Analysis" target="_blank" class="github-btn">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                            </svg>
+                            GitHub
+                        </a>
+                        <button class="details-btn" onclick="openModal('project5')">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
+                            </svg>
+                            Details
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Project 6: TCS Stock Data Live and latest --> 
+                <div class="project-card">
+                    <h3>TCS Stock Data Live and Latest</h3>
+                    <p>
+                        Real-time analysis of TCS stock data with live updates, trend analysis, and predictive modeling for investment strategies.
+                        "TCS Stock Data Analysis & Prediction project using Python, Machine Learning, and LSTM. 
+                        Includes data preprocessing, EDA, feature engineering, and predictive modeling to forecast stock prices with visualization and evaluation metrics."
+                    </p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Pandas</span>
+                        <span class="tech-tag">NumPy</span>
+                        <span class="tech-tag">Scikit-learn</span>
+                        <span class="tech-tag">Matplotlib</span>
+                        <span class="tech-tag">Time Series Analysis</span>
+                        <span class="tech-tag">Live Data Processing</span>
+                    </div>
+                    <div class="project-buttons">
+                        <a href="https://github.com/aditya-sharma-hub/TCS-Stock-Data-Live-and-Latest" target="_blank" class="github-btn">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                            </svg>
+                            GitHub
+                        </a>
+                        <button class="details-btn" onclick="openModal('project6')">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
+                            </svg>
+                            Details
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Project 7: AI Sales Prediction and Analysis --> 
+                <div class="project-card">
+                    <h3>AI Sales Prediction and Analysis</h3>
+                    <p>
+                        This project involves a Power BI-based Sales Analytics Dashboard that analyzes historical sales data from April to July 2025 across product categories, 
+                        locations, and store types in major Indian cities. It includes visualizations for sales trends, geographic mapping, forecasting for future sales and revenue, 
+                        anomaly detection, and AI-driven insights to support business decision-making.
+                    </p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Pandas</span>
+                        <span class="tech-tag">NumPy</span>
+                        <span class="tech-tag">Prophet Model</span>
+                        <span class="tech-tag">Matplotlib</span>
+                        <span class="tech-tag">Time Series Analysis</span>
+                        <span class="tech-tag">Live Data Processing</span>
+                        <span class="tech-tag">Power BI</span>
+                    </div>
+                    <div class="project-buttons">
+                        <a href="https://github.com/aditya-sharma-hub/AI-Sales-Prediction-and-Analysis" target="_blank" class="github-btn">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                            </svg>
+                            GitHub
+                        </a>
+                        <button class="details-btn" onclick="openModal('project7')">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
+                            </svg>
+                            Details
+                        </button>
+                    </div>
+                </div>
+            
+        </div>
+    </section>
+
+    <!-- Resume Section -->
+    <section id="resume" class="section section-muted" aria-labelledby="resume-title">
+        <h2 id="resume-title" class="section-title">Resume</h2>
+        <div class="resume-content">
+
+            <div class="resume-section" aria-label="Education">
+                <h3>Education</h3>
+                <div class="timeline-item">
+                    <h4>Bachelor of Technology in Computer Science </h4>
+                    <div class="institution">IP University</div>
+                    <div class="date">2023 - Present</div>
+                    <p>
+                        Pursuing a B.Tech in Computer Science with a specialization in Data Science.<br>
+                        Relevant coursework includes Data Mining, Machine Learning, Big Data Analytics, and Database Systems.<br>
+                        Specialized in Data Science and Machine Learning.Developed a keen interest for relevant coursework which includes:- <br> 
+                        ◉ Statistics <br>
+                        ◉ Database Management <br>
+                        ◉ Algorithms <br>
+                        ◉ Data Structures <br>
+                        ◉ Artificial Intelligence <br>
+                        ◉ Machine Learning <br>
+                        ◉ Data Mining <br>
+                        ◉ Data Analytics <br>
+                        ◉ Data Visualization <br>
+                        ◉ Data Warehousing <br>
+                        ◉ Data Science <br>
+                    </p>
+                </div>
+
+                <div class="timeline-item">
+                    <h4>Higher Secondary Education</h4>
+                    <div class="institution">Indraprastha International School</div>
+                    <div class="date">2021 - 2022 (12th)</div>
+                    <p>
+                        Completed with a focus on Science and Mathematics. <br>
+                        Achieved 85% marks in board exams.
+                    </p>
+                </div>
+
+                <div class="timeline-item">
+                    <h4>Secondary Education</h4>
+                    <div class="institution">Indraprastha International School</div>
+                    <div class="date">2019 - 2020 (10th)</div>
+                    <p>
+                        Achieved 88% marks in board exams.
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="resume-section" aria-label="Experience">
+                <h3>Experience</h3>
+                <div class="timeline-item">
+                    <h4>Data Science Intern</h4>
+                    <div class="institution">Canon India Pvt. Ltd</div>
+                    <div class="date">July 2025 - August 2025</div>
+                    <p>
+                        Developed predictive models for sales prediction achieving 85% accuracy. <br>
+                        Created interactive dashboards using Power BI. <br>
+                        Collaborated with cross-functional teams to enhance data-driven decision-making. <br>
+                    </p>
+                </div>
+            </div>
+
+            <div class="resume-section" aria-label="Certifications">
+                <h3>Certifications</h3>
+                <div class="timeline-item">
+                    <h4>Certification of Participation for Data Science</h4>
+                    <div class="institution">Scalar</div>
+                    <div class="date">November 2024</div>
+                </div>
+
+                <div class="timeline-item">
+                    <h4>Data Science Training</h4>
+                    <div class="institution">Corizo</div>
+                    <div class="date">September 2024</div>
+                    <p>
+                        Mastered Python programming for data science including:- <br>
+                        
+                        ◉ Data Science <br>
+                        ◉ pandas <br>
+                        ◉ NumPy <br> 
+                        ◉ matplotlib and Seabrn <br> 
+                        ◉ scikit-learn <br>
+                        ◉ Developed skills in data manipulation, analysis, and visualization <br>
+                        Completed hands-on projects to apply Python in real-world data science scenarios.
+                    </p>
+                </div>
+
+                <div class="timeline-item">
+                    <h4>Intoduction to Generative AI</h4>
+                    <div class="institution">Next Wave</div>
+                    <div class="date">April 2024</div>
+                </div>
+
+                <div class="timeline-item">
+                    <h4>Data Science and Tableau Course </h4>
+                    <div class="institution">Teachnook</div>
+                    <div class="date">January 2024</div>
+                    <p>
+                        Mastered Python programming for data science including:- <br>
+                        
+                        ◉ pandas <br>
+                        ◉ NumPy <br> 
+                        ◉ matplotlib <br> 
+                        ◉ scikit-learn <br>
+                        ◉ Tableau <br>
+                        ◉ Developed skills in data manipulation, analysis, and visualization <br>
+                        Completed hands-on projects to apply Python in real-world data science scenarios.
+                    </p>
+                </div>
+
+                <div class="timeline-item">
+                    <h4>Introduction to Azure Static Web Apps </h4>
+                    <div class="institution">Microsoft Learn Student Ambassador </div>
+                    <div class="date">December 2023</div>
+                </div>
+
+                <div class="timeline-item">
+                    <h4>Intoduction to DevOps</h4>
+                    <div class="institution">Microsoft Technical Team</div>
+                    <div class="date">October 2023</div>
+                </div>
+
+                <div class="timeline-item">
+                    <h4>Python Complete Course for Beginner</h4>
+                    <div class="institution">Udemy </div>
+                    <div class="date">July 2023</div>
+                    <p> 
+                        ◉ Python Basics <br>
+                    </p>
+                    <a href="https://www.udemy.com/certificate/UC-ac69c312-5608-4be3-bb6f-62ffde661583/" target="_blank" rel="noopener noreferrer">Show Credentials </a>
+
+                </div>
+
+
+            </div>
+            
+            
+
+
+            <div class="resume-section" aria-label="Achievements">
+                <h3>Achievements</h3>
+                <div class="timeline-item">
+                    <h4>Arduino Wearable Hackathon Award</h4>
+                    <div class="institution">Interschool Competition </div>
+                    <div class="date">2023</div>
+                    <p>
+                        Won first place for developing an innovative working watch using machine learning algorithms. <br>
+                        The features we implemented included were:- <br>
+                        ◉ heart rate monitoring <br>
+                        ◉ step counting  <br>
+                        ◉ body temperature monitoring  <br>
+                        ◉ stopwatch <br>
+                        ◉ monitoring the surrounding temperature <br>
+                    </p>
+                </div>
+                <div class="timeline-item">
+                    <h4>Robotics Meet</h4>
+                    <div class="institution">Avishkar</div>
+                    <div class="date">2020</div>
+                    <p>
+                        Designed and built a robot capable of performing specific tasks enhancing robotics and programming skills using Arduino.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 3rem;">
+    <a href="Aditya-Sharma-Resume.pdf" download class="download-resume">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z"/>
+        </svg>
+        Download Resume
+    </a>
+</div>
+
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+        <div class="container">
+            <h2 class="section-title fade-in">Get In Touch</h2>
+            <div class="contact-content fade-in">
+                <div class="contact-info">
+                    <h3>Let's Connect</h3>
+                    <p>
+                        I'm always excited to discuss new opportunities, collaborate on interesting projects, 
+                        or simply chat about data science and AI. Whether you're looking for a data scientist, 
+                        have a project in mind, or want to explore potential collaborations, I'd love to hear from you.
+                    </p>
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                            </svg>
+                            <div>
+                                <strong>Email</strong>
+                                <p>adityasharmand@gmail.com</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+                            </svg>
+                            <div>
+                                <strong>Phone</strong>
+                                <p>+91 9717704641</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                            </svg>
+                            <div>
+                                <strong>Location</strong>
+                                <p>New Delhi, India</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                            </svg>
+                            <div>
+                                <strong>LinkedIn</strong>
+                                <p>linkedin.com/in/aditya-sharma-2a9b94287</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Aditya Sharma</h3>
+                    <p>Data Science & AI Enthusiast passionate about transforming data into actionable insights and building intelligent solutions.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <div class="footer-links">
+                        <a href="#about">About</a>
+                        <a href="#skills">Skills</a>
+                        <a href="#projects">Projects</a>
+                        <a href="#resume">Resume</a>
+                        <a href="#contact">Contact</a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Connect</h3>
+                    <div class="footer-links">
+                        <a href="https://github.com/aditya-sharma-hub" target="_blank">GitHub</a>
+                        <a href="https://www.linkedin.com/in/aditya-sharma-2a9b94287/" target="_blank">LinkedIn</a>
+                        <a href="mailto:adityasharmand@gmail.com">Email</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Aditya Sharma. All rights reserved. Built with passion for data science.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Project Modals -->
+    <!-- Project 1 Modal -->
+    <div id="project1-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('project1')">&times;</span>
+            <h2>Life Expectancy Analysis (WHO)</h2>
+            <div class="modal-section">
+                <h3>Problem Statement</h3>
+                <p>Global health organizations need to understand the factors that influence life expectancy across different countries and regions. This project aims to analyze WHO data to identify key determinants of life expectancy and build predictive models to forecast life expectancy based on various health, economic, and social factors.</p>
+            </div>
+            <div class="modal-section">
+                <h3>Approach</h3>
+                <ul>
+                    <li>Comprehensive data cleaning and preprocessing of WHO dataset containing 22 features</li>
+                    <li>Exploratory data analysis to identify patterns and correlations</li>
+                    <li>Feature engineering and selection to improve model performance</li>
+                    <li>Implementation of multiple regression models including Linear Regression and Random Forest</li>
+                    <li>Model evaluation using cross-validation and performance metrics</li>
+                    <li>Statistical analysis to identify most significant factors affecting life expectancy</li>
+                </ul>
+            </div>
+            <div class="modal-section">
+                <h3>Key Metrics</h3>
+                <ul>
+                    <li>Linear Regression R² Score: 0.847</li>
+                    <li>Random Forest R² Score: 0.923</li>
+                    <li>Mean Absolute Error: 2.1 years</li>
+                    <li>Root Mean Square Error: 3.2 years</li>
+                    <li>Cross-validation accuracy: 91.5%</li>
+                </ul>
+            </div>
+            <div class="modal-section">
+                <h3>Project Highlights</h3>
+                <ul>
+                    <li>Analyzed data from 193 countries over 15 years (2000-2015)</li>
+                    <li>Identified adult mortality, income composition, and schooling as top predictors</li>
+                    <li>Created interactive visualizations showing global life expectancy trends</li>
+                    <li>Developed insights for policy makers on improving public health outcomes</li>
+                    <li>Achieved 92.3% accuracy in predicting life expectancy using ensemble methods</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Project 2 Modal -->
+    <div id="project2-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('project2')">&times;</span>
+            <h2>Coca Cola Stock Analysis</h2>
+            <div class="modal-section">
+                <h3>Problem Statement</h3>
+                <p>Financial markets require accurate stock price predictions for investment decisions. This project focuses on analyzing Coca Cola's stock performance, identifying trends, and building predictive models to forecast future stock prices using historical data and technical indicators.</p>
+            </div>
+            <div class="modal-section">
+                <h3>Approach</h3>
+                <ul>
+                    <li>Collection and preprocessing of 10+ years of Coca Cola stock data</li>
+                    <li>Technical analysis using moving averages, RSI, MACD, and Bollinger Bands</li>
+                    <li>Time series analysis and trend decomposition</li>
+                    <li>Implementation of LSTM neural networks for sequence prediction</li>
+                    <li>Comparison of multiple forecasting models including ARIMA and Prophet</li>
+                    <li>Risk analysis and volatility modeling using GARCH</li>
+                </ul>
+            </div>
+            <div class="modal-section">
+                <h3>Key Metrics</h3>
+                <ul>
+                    <li>LSTM Model Accuracy: 94.2%</li>
+                    <li>Mean Absolute Percentage Error: 3.8%</li>
+                    <li>Sharpe Ratio: 1.34</li>
+                    <li>Maximum Drawdown: 12.5%</li>
+                    <li>Prediction Confidence Interval: 95%</li>
+                </ul>
+            </div>
+            <div class="modal-section">
+                <h3>Project Highlights</h3>
+                <ul>
+                    <li>Analyzed over 2,500 trading days of historical stock data</li>
+                    <li>Developed automated trading signals with 78% success rate</li>
+                    <li>Created comprehensive dashboard for real-time stock monitoring</li>
+                    <li>Implemented sentiment analysis using news data for enhanced predictions</li>
+                    <li>Generated actionable investment insights and risk assessment reports</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Project 3 Modal -->
+    <div id="project3-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('project3')">&times;</span>
+            <h2>Laptop Price Analysis</h2>
+            <div class="modal-section">
+                <h3>Problem Statement</h3>
+                <p>The laptop market is highly competitive with numerous brands and specifications affecting pricing. This project aims to analyze laptop pricing trends, understand the impact of different features on price, and build predictive models to estimate laptop prices based on specifications.</p>
+            </div>
+            <div class="modal-section">
+                <h3>Approach</h3>
+                <ul>
+                    <li>Data collection from multiple e-commerce platforms and manufacturer websites</li>
+                    <li>Comprehensive feature engineering including brand encoding and specification parsing</li>
+                    <li>Exploratory data analysis to identify price-driving factors</li>
+                    <li>Implementation of multiple regression models and ensemble methods</li>
+                    <li>Feature importance analysis using SHAP values</li>
+                    <li>Market segmentation analysis based on price ranges and target audiences</li>
+                </ul>
+            </div>
+            <div class="modal-section">
+                <h3>Key Metrics</h3>
+                <ul>
+                    <li>Random Forest R² Score: 0.912</li>
+                    <li>Gradient Boosting R² Score: 0.925</li>
+                    <li>Mean Absolute Error: $127</li>
+                    <li>Root Mean Square Error: $189</li>
+                    <li>Cross-validation accuracy: 89.7%</li>
+                </ul>
+            </div>
+            <div class="modal-section">
+                <h3>Project Highlights</h3>
+                <ul>
+                    <li>Analyzed over 1,300 laptop models across 15+ brands</li>
+                    <li>Identified RAM, processor type, and brand as top price predictors</li>
+                    <li>Created price prediction tool with user-friendly interface</li>
+                    <li>Developed market insights for consumers and retailers</li>
+                    <li>Generated recommendations for optimal price-performance configurations</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Project 4 Modal -->
+    <div id="project4-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('project4')">&times;</span>
+            <h2>Data Science Job Salaries Analysis</h2>
+            <div class="modal-section">
+                <h3>Problem Statement</h3>
+                <p>The data science job market is rapidly evolving with varying salary ranges across different roles, experience levels, and locations. This project analyzes comprehensive salary data to provide insights into compensation trends, career progression, and factors influencing data science salaries globally.</p>
+            </div>
+            <div class="modal-section">
+                <h3>Approach</h3>
+                <ul>
+                    <li>Data collection from multiple job portals and salary survey platforms</li>
+                    <li>Comprehensive data cleaning and standardization across different sources</li>
+                    <li>Geographic analysis of salary variations across countries and cities</li>
+                    <li>Role-based analysis comparing different data science positions</li>
+                    <li>Experience level impact analysis on compensation packages</li>
+                    <li>Predictive modeling for salary estimation based on job characteristics</li>
+                </ul>
+            </div>
+            <div class="modal-section">
+                <h3>Key Metrics</h3>
+                <ul>
+                    <li>Dataset Size: 3,755 salary records</li>
+                    <li>Countries Analyzed: 50+</li>
+                    <li>Job Titles Covered: 85+ unique positions</li>
+                    <li>Salary Prediction Accuracy: 87.3%</li>
+                    <li>Mean Absolute Error: $8,420</li>
+                </ul>
+            </div>
+            <div class="modal-section">
+                <h3>Project Highlights</h3>
+                <ul>
+                    <li>Comprehensive analysis of salary trends from 2020-2024</li>
+                    <li>Identified 35% average salary growth for senior-level positions</li>
+                    <li>Created interactive salary calculator and career progression tool</li>
+                    <li>Developed insights on remote work impact on compensation</li>
+                    <li>Generated actionable recommendations for career development</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Project 5 Modal -->
+    <div id="project5-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('project5')">&times;</span>
+            <h2>Supermarket Sales Data Analysis</h2>
+            <div class="modal-section">
+                <h3>Problem Statement</h3>
+                <p>Retail businesses need to understand customer behavior, sales patterns, and operational efficiency to optimize their performance. This project analyzes supermarket sales data to uncover insights about customer preferences, seasonal trends, and business opportunities for revenue growth.</p>
+            </div>
+            <div class="modal-section">
+                <h3>Approach</h3>
+                <ul>
+                    <li>Comprehensive analysis of transactional data including customer demographics</li>
+                    <li>Time series analysis to identify seasonal patterns and trends</li>
+                    <li>Customer segmentation using RFM analysis and clustering techniques</li>
+                    <li>Product performance analysis and category-wise sales insights</li>
+                    <li>Geographic analysis of branch performance and regional preferences</li>
+                    <li>Statistical testing to validate business hypotheses and insights</li>
+                </ul>
+            </div>
+            <div class="modal-section">
+                <h3>Key Metrics</h3>
+                <ul>
+                    <li>Total Transactions Analyzed: 1,000+</li>
+                    <li>Revenue Coverage: $322,966.75</li>
+                    <li>Customer Segments Identified: 4 distinct groups</li>
+                    <li>Product Categories: 3 main categories analyzed</li>
+                    <li>Branch Locations: 3 cities compared</li>
+                </ul>
+            </div>
+            <div class="modal-section">
+                <h3>Project Highlights</h3>
+                <ul>
+                    <li>Identified peak sales hours and optimal staffing recommendations</li>
+                    <li>Discovered 23% higher spending by female customers on average</li>
+                    <li>Created customer loyalty scoring system and retention strategies</li>
+                    <li>Developed inventory optimization recommendations based on demand patterns</li>
+                    <li>Generated actionable insights for marketing campaign targeting</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Project 6 Modal -->
+    <div id="project6-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('project1')">&times;</span>
+            <h2>TCS Stock Data – Live and Latest</h2>
+            <div class="modal-section">
+                <h3>Problem Statement</h3>
+                <p> 
+                    <li> Analyze historical TCS stock data to understand stock behavior, identify trends, and forecast future prices. </li> 
+                    <li> Build predictive models that can assist investors and analysts in decision-making. </li>
+                </p>
+            </div>
+            <div class="modal-section">
+                <h3>Approach</h3>
+                <ul>
+                    <li>Performed data preprocessing: handling missing values, type conversion, and outlier checks.</li>
+                    <li>Conducted Exploratory Data Analysis (EDA): price trends, volume analysis, moving averages, correlation heatmaps, and daily price change distributions.</li>
+                    <li>Engineered features such as lag values, moving averages, and date-based features (Year, Month, Day, Weekday).</li>
+                    <li>Built predictive models Linear Regression for baseline stock price prediction.</li>
+                    <li>Built predictive models LSTM (Long Short-Term Memory neural network) for time-series forecasting.</li>
+                </ul>
+            </div>
+            <div class="modal-section">
+                <h3>Key Metrics</h3>
+                <ul>
+                    <li>Identified strong correlations between Open, High, Low, and Close prices.</li>
+                    <li>Moving averages provided clear trend signals and were used in a crossover strategy for buy/sell indicators.</li>
+                    <li>Linear Regression showed a good fit but limited time-series capability.</li>
+                    <li>LSTM model achieved a Mean Absolute Error (MAE) ≈ 69.5, capturing temporal trends effectively.</li>
+                </ul>
+            </div>
+            <div class="modal-section">
+                <h3>Project Highlights</h3>
+                <ul>
+                    <li>Combined traditional ML (Linear Regression) with deep learning (LSTM) for robust forecasting.</li>
+                    <li>Used moving average crossover strategy to generate trading signals.</li>
+                    <li>Provided both historical insights and predictive modeling, making the project useful for both analysts and traders.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Project 7 Modal -->
+    <div id="project7-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('project7')">&times;</span>
+            <h2>AI Sales Prediction and Analysis</h2>
+            <div class="modal-section">
+                <h3>Problem Statement</h3>
+                <p> 
+                    Businesses face challenges in monitoring sales performance, predicting future trends, and identifying opportunities or risks due to fragmented data 
+                    across categories (e.g., Electronics, Household), locations (e.g., Bangalore, Delhi), and time periods. The goal is to create a comprehensive tool for 
+                    real-time insights, accurate forecasting (with 99.72% accuracy), and proactive management to optimize inventory, resources, and revenue in a volatile market 
+                    influenced by holidays and seasonal variations.
+                    
+                </p>
+            </div>
+            <div class="modal-section">
+                <h3>Approach</h3>
+                <ul>
+                    <li>Data Collection and Integration: Aggregated data from CSV files (daily/monthly sales, drilldown details, geo-sales with lat/long, holidays) and executive summaries. Used Power BI for ETL (Extract, Transform, Load) processes.</li>
+                    <li>Visualizations: Created donut charts for product categories, bar charts for location breakdowns, line charts for trends, and geographic maps using latitude/longitude data.</li>
+                    <li>Forecasting: Applied time-series models (e.g., Prophet-like algorithm) to generate 30-day sales and revenue predictions, including upper/lower bounds and accuracy metrics (e.g., MAPE at 160%, standard deviation of 446.214)..</li>
+                    <li>AI and Advanced Analytics: Integrated machine learning for anomaly detection, heatmap matrices for category-location correlations, holiday impact analysis, and risk scoring.</li>
+                    <li>Tools: Power BI Desktop for dashboard creation, with interactive filters for dates, locations, and categories.</li>
+                </ul>
+            </div>
+            <div class="modal-section">
+                <h3>Key Metrics</h3>
+                <ul>
+                    <li>Key Metrics: Total sales quantity: 71,471 units; Total revenue: ₹4.89M; Average daily sales: ₹585.83; Top category: Electronics (19K units, 27.28% share); Top location: Bangalore.</li>
+                    <li>Sales Trends: Monthly sales: April (20,298), May (17,245), June (15,816), July (18,112). Daily sales peaked at 1,962 on April 21 and 1,962 on other high days.</li>
+                    <li>Forecasting Outcomes: Next 30-day average forecasted sales: ~584 units/day; Revenue projections stable (e.g., ₹41,106 on July 31, dropping to ₹19,452 on August 1). Forecast accuracy: 99.72%, with bounds showing low volatility.</li>
+                    <li>Geographic Insights: Bangalore led with strong Electronics sales; Heatmaps revealed correlations like high Household sales in Delhi</li>
+                    <li>Anomaly and Holiday Impact: Detected seasonal dips (e.g., around holidays like Good Friday on April 18); AI identified a strong downward trend (-198 predicted uplift) and opportunities in Beverages.</li>
+                    
+                </ul>
+            </div>
+            <div class="modal-section">
+                <h3>Project Highlights</h3>
+                <ul>
+                    <li>Electronics dominates revenue (27.28%), accounting for ~69% of sales from top 3 categories, reducing risk through portfolio balance.</li>
+                    <li>Predictive accuracy of 99.72% enables reliable 30-day planning, with stable forecasts (e.g., 2.0K-2.6K daily range) and controlled variance for inventory optimization.</li>
+                    <li>AI-driven features like anomaly detection and holiday analysis (e.g., impact from Buddha Purnima on May 12) provide proactive alerts, identifying growth in underperforming segments like Beverages (14.13% share).</li>
+                    <li>Interactive Power BI dashboard offers real-time insights, enabling dynamic filtering by date, location, and category for tailored decision-making.</li>
+                    <li>Geographic focus: Top cities (Bangalore, Chennai) show consistent demand; Interactive maps highlight market penetration opportunities in Kolkata and Mumbai.</li>
+                    <li>Overall business impact: Enables data-driven decisions for resource allocation, risk mitigation, and revenue growth in a predictable sales environment.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Mobile menu toggle
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const navLinks = document.querySelector('.nav-links');
+
+        mobileMenu.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+        });
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Navbar background on scroll
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 100) {
+                navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+                navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+            } else {
+                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+                navbar.style.boxShadow = 'none';
+            }
+        });
+
+        // Modal functions
+        function openModal(projectId) {
+            const modal = document.getElementById(projectId + '-modal');
+            if (modal) {
+                modal.style.display = 'block';
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeModal(projectId) {
+            const modal = document.getElementById(projectId + '-modal');
+            if (modal) {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        // Close modal when clicking outside
+        window.addEventListener('click', (e) => {
+            if (e.target.classList.contains('modal')) {
+                e.target.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // Contact form handling
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(this);
+            const name = formData.get('name');
+            const email = formData.get('email');
+            const subject = formData.get('subject');
+            const message = formData.get('message');
+            
+            // Simple validation
+            if (!name || !email || !subject || !message) {
+                alert('Please fill in all fields.');
+                return;
+            }
+            
+            // Simulate form submission
+            const submitBtn = this.querySelector('.submit-btn');
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = 'Sending...';
+            submitBtn.disabled = true;
+            
+            setTimeout(() => {
+                alert('Thank you for your message! I\'ll get back to you soon.');
+                this.reset();
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+            }, 2000);
+        });
+
+        // Add loading animation to buttons
+        document.querySelectorAll('.github-btn, .details-btn, .cta-button').forEach(btn => {
+            btn.addEventListener('click', function() {
+                if (!this.classList.contains('details-btn')) {
+                    this.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        this.style.transform = '';
+                    }, 150);
+                }
+            });
+        });
+
+        // Typing animation for hero subtitle
+        const subtitle = document.querySelector('.hero .subtitle');
+        const text = subtitle.textContent;
+        subtitle.textContent = '';
+        
+        let i = 0;
+        function typeWriter() {
+            if (i < text.length) {
+                subtitle.textContent += text.charAt(i);
+                i++;
+                setTimeout(typeWriter, 100);
+            }
+        }
+        
+        setTimeout(typeWriter, 1000);
+    </script>
+</body>
+</html>
