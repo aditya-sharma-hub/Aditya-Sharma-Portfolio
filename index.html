@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aditya Sharma - Data Science & AI Portfolio</title>
+    <title>Aditya Sharma - Portfolio</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Sans+Pro:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
         * {
@@ -226,10 +226,22 @@
 
         .hero .subtitle {
             font-size: 1.5rem;
-            color: var(--text-secondary);
+            color: rgba(255, 255, 255, 0.9);
             margin-bottom: 2rem;
-            animation: fadeInUp 1s ease 0.2s both;
+            animation: fadeInUp 1s ease forwards;
+            opacity: 0;
+            transform: translateY(30px);
+            animation-delay: 0.2s;
+            animation-fill-mode: forwards;
         }
+
+        @keyframes fadeInUp {
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
 
         .hero .description {
             font-size: 1.1rem;
@@ -325,13 +337,26 @@
 
         .about-image {
             position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: transform 0.3s ease;
         }
 
         .about-image img {
             width: 100%;
+            height: auto;
             border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
         }
+
+
+        .about-image:hover img {
+            transform: scale(1.05);
+        }
+
 
         .about-text h3 {
             font-family: 'Playfair Display', serif;
@@ -351,7 +376,7 @@
             grid-template-columns: repeat(3, 1fr);
             gap: 2rem;
             margin-top: 2rem;
-        }
+}
 
         .stat-item {
             text-align: center;
@@ -359,20 +384,30 @@
             background: rgba(8, 145, 178, 0.05);
             border-radius: 15px;
             border: 1px solid rgba(8, 145, 178, 0.1);
-        }
+            transition: all 0.3s ease;
+            cursor: pointer;
+}
+
+        .stat-item:hover {
+            transform: translateY(-5px);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            box-shadow: 0 0 20px rgba(102, 126, 234, 0.6);
+}
 
         .stat-number {
             font-size: 2rem;
             font-weight: 700;
-            color: var(--primary-color);
+            color: #0891b2;
             display: block;
-        }
+}
 
         .stat-label {
-            color: var(--text-secondary);
+            color: #64748b;
             font-size: 0.9rem;
             margin-top: 0.5rem;
-        }
+}
+
 
         /* Skills Section */
         .skills-grid {
@@ -600,14 +635,18 @@
             text-decoration: none;
             border-radius: 25px;
             font-weight: 600;
-            margin-top: 2rem;
             transition: all 0.3s ease;
-        }
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+}
+
+
 
         .download-resume-container {
-    text-align: center;
-    margin-top: 3rem;
+            text-align: center;
+            margin-top: 3rem; /* spacing from stats */
+            grid-column: 1 / -1; /* spans full grid width if using grid */
 }
+
 
         .download-resume:hover {
             transform: translateY(-2px);
@@ -893,6 +932,7 @@
             opacity: 1;
             transform: translateY(0);
         }
+
     </style>
 </head>
 <body>
@@ -901,7 +941,11 @@
         <div class="nav-container">
             <div class="logo">Aditya Sharma</div>
             <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
                 <li><a href="#projects">Projects</a></li>
+                <li><a href="#resume">Resume</a></li>
+                <li><a href="#contact">Contact</a></li>
             </ul>
             <div class="social-links">
                 <a href="https://github.com/aditya-sharma-hub" target="_blank" class="social-btn">
@@ -935,10 +979,13 @@
             <div class="particle"></div>
         </div>
         <div class="hero-content">
-            <h1>Aditya Sharma</h1>
-            <p class="subtitle">Data Science & AI Enthusiast</p>
+            <h1 class="glow-heading">Aditya Sharma</h1>
+
+            <p class="subtitle typing-effect">Data Scientist</p>
+
+
             <p class="description">
-                Passionate about transforming data into actionable insights and building intelligent solutions <br>
+                Transforming data into actionable insights and building intelligent solutions <br>
                 that drive business growth. Specializing in machine learning, data analysis, and AI-powered applications.
             </p>
             <a href="#contact" class="cta-button">
@@ -956,36 +1003,42 @@
             <h2 class="section-title fade-in">About Me</h2>
             <div class="about-content fade-in">
                 <div class="about-image">
-                    <img src="resume.jpg" fade-in alt="Aditya Sharma" class="fade-in" style="width: 100%; border-radius: 20px; box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);" >
+                    <img src="resume.jpg" alt="Aditya Sharma" loading="lazy">
                 </div>
                 <div class="about-text">
                     <h3>Transforming Data into Insights</h3>
                     <p>
-                        I'm a passionate Data Science and AI enthusiast with a strong foundation in Mathematics, 
-                        statistical analysis, and data visualization. My journey in data science began with a curiosity 
+                        Data Scientist and AI enthusiast with a strong foundation in Mathematics,
+                        statistical analysis, and data visualization. My journey in data science began with a curiosity
                         about how data can tell stories and drive meaningful decisions.
                     </p>
                     <p>
-                        With expertise in Python, and various machine learning frameworks, I specialize in building 
-                        predictive models, conducting exploratory data analysis, and creating data-driven solutions 
+                        With knowledge in Python, and various machine learning frameworks, I specialize in building
+                        predictive models, conducting exploratory data analysis, and creating data-driven solutions
                         that solve real-world problems.
                     </p>
                     <p>
-                        When I'm not analyzing datasets or building models, you can find me exploring the latest 
+                        When I'm not analyzing datasets or building models, you can find me exploring the latest
                         developments in AI research, or sharing knowledge with the data science community.
                     </p>
                     <div class="about-stats">
                         <div class="stat-item">
-                            <span class="stat-number">5+</span>
-                            <span class="stat-label">Projects Completed using Python and ML</span>
+                            <span class="stat-number">15+</span>
+                            <span class="stat-label">Certifications</span>
                         </div>
                         <div class="stat-item">
-                            <span class="stat-number"> 100+ </span>
-                            <span class="stat-label"> Python Coding hours</span>
+                            <span class="stat-number"> 10+ </span>
+                            <span class="stat-label">  Projects </span>
                         </div>
                         <div class="stat-item">
-                            <span class="stat-number"> 30+ </span>
-                            <span class="stat-label"> Machine Learning hours  </span>
+                            <span class="stat-number"> 2+ </span>
+                            <span class="stat-label">  Years Experience </span>
+                        </div>
+                        <div class="download-resume-container">
+                            <a href="Aditya-Sharma-Resume.pdf" download class="download-resume">
+                                <i class="fas fa-download">
+                                    </i> Download Resume
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -1011,6 +1064,8 @@
                         <span class="skill-tag">C</span>
                         <span class="skill-tag">Java</span>
                         <span class="skill-tag">C++</span>
+                        <span class="skill-tag">Shell</span>
+
                     </div>
                 </div>
 
@@ -1026,7 +1081,7 @@
                         <span class="skill-tag">TensorFlow</span>
                         <span class="skill-tag">PyTorch</span>
                         <span class="skill-tag">Random Forest</span>
-                        <span class="skill-tag">Linear Regression</span>
+                        
                         <span class="skill-tag">Neural Networks</span>
                     </div>
                 </div>
@@ -1036,7 +1091,7 @@
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
                             <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
                         </svg>
-                        Data Analysis & Visualization
+                        Data Analysis
                     </h3>
                     <div class="skill-list">
                         <span class="skill-tag">Pandas</span>
@@ -1055,11 +1110,12 @@
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
                             <path d="M4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm16-4H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-1 9H9V9h10v2zm-4 4H9v-2h6v2zm4-8H9V5h10v2z"/>
                         </svg>
-                        Databases & Big Data
+                        Databases
                     </h3>
                     <div class="skill-list">
                         <span class="skill-tag">MySQL</span>
                         <span class="skill-tag">PostgreSQL</span>
+                        <span class="skill-tag">MongoDB</span>
 
                     </div>
                 </div>
@@ -1069,33 +1125,20 @@
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
                             <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
                         </svg>
-                        Tools & Technologies
+                        Tools
                     </h3>
                     <div class="skill-list">
                         <span class="skill-tag">Jupyter Notebook</span>
                         <span class="skill-tag">Git</span>
                         <span class="skill-tag">Linux</span>
                         <span class="skill-tag">VS Code</span>
-                        <span class="skill-tag">Anaconda</span>
+                        <span class="skill-tag">Docker</span>
 
                     </div>
                 </div>
 
-                <div class="skill-category">
-                    <h3>
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                        </svg>
-                        Statistical Analysis
-                    </h3>
-                    <div class="skill-list">
-                        <span class="skill-tag">Hypothesis Testing</span>
-                        <span class="skill-tag">A/B Testing</span>
-                        <span class="skill-tag">Regression Analysis</span>
-                        <span class="skill-tag">Time Series Analysis</span>
-                        <span class="skill-tag">ANOVA</span>
-                    </div>
-                </div>
+
+
             </div>
         </div>
     </section>
@@ -1283,7 +1326,7 @@
                     </div>
                 </div>
 
-                <!-- Project 7: AI Sales Prediction and Analysis --> 
+                <!-- Project 7: AI Sales Prediction and Analysis -->
                 <div class="project-card">
                     <h3>AI Sales Prediction and Analysis</h3>
                     <p>
@@ -1316,7 +1359,7 @@
                         </button>
                     </div>
                 </div>
-            
+
         </div>
     </section>
 
@@ -1448,7 +1491,7 @@
                     <h4>Python Complete Course for Beginner</h4>
                     <div class="institution">Udemy </div>
                     <div class="date">July 2023</div>
-                    <p> 
+                    <p>
                         ◉ Python Basics <br>
                     </p>
                     <a href="https://www.udemy.com/certificate/UC-ac69c312-5608-4be3-bb6f-62ffde661583/" target="_blank" rel="noopener noreferrer">Show Credentials </a>
@@ -1488,14 +1531,7 @@
             </div>
         </div>
 
-        <div style="text-align: center; margin-top: 3rem;">
-    <a href="Aditya_Sharma_Resume.pdf" download class="download-resume">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z"/>
-        </svg>
-        Download Resume
-    </a>
-</div>
+
 
     </section>
 
@@ -1560,7 +1596,7 @@
             <div class="footer-content">
                 <div class="footer-section">
                     <h3>Aditya Sharma</h3>
-                    <p>Data Science & AI Enthusiast passionate about transforming data into actionable insights and building intelligent solutions.</p>
+                    <p>Transforming data into actionable insights and building intelligent solutions.</p>
                 </div>
                 <div class="footer-section">
                     <h3>Quick Links</h3>
